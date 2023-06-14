@@ -2,17 +2,17 @@ import pygame
 import random
 
 from pygame.sprite import Sprite
-from game.utils.constants import ENEMY_1, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import TICK, SCREEN_HEIGHT, SCREEN_WIDTH
 
-class Enemy(Sprite):
-    Y_POS = 20
+class EnemyTick(Sprite):
+    Y_POS = 50
     X_POS_LIST =[50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
     SPEED_X = 5
     SPEED_Y = 1
     MOD_X = {0: 'left', 1:'right'}
     
     def __init__(self):
-        self.image = ENEMY_1
+        self.image = TICK
         self.image = pygame.transform.scale(self.image, (40,60))
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS_LIST[random.randint(0,10)]
@@ -52,4 +52,3 @@ class Enemy(Sprite):
     
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
-        
