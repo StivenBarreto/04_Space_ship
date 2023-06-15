@@ -6,16 +6,16 @@ from game.utils.constants import TICK, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class EnemyTick(Sprite):
     Y_POS = 50
-    X_POS_LIST =[50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
-    SPEED_X = 5
+    X_POS_LIST =[350, 400, 450, 500, 550]
+    SPEED_X = 10
     SPEED_Y = 1
     MOD_X = {0: 'left', 1:'right'}
     
     def __init__(self):
         self.image = TICK
-        self.image = pygame.transform.scale(self.image, (40,60))
+        self.image = pygame.transform.scale(self.image, (80,60))
         self.rect = self.image.get_rect()
-        self.rect.x = self.X_POS_LIST[random.randint(0,10)]
+        self.rect.x = self.X_POS_LIST[random.randint(0,4)]
         self.rect.y = self.Y_POS
         self.type = 'enemy'
         
