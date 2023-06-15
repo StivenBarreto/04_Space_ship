@@ -3,6 +3,7 @@ import random
 
 from pygame.sprite import Sprite
 from game.utils.constants import PHANTOM, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.components.bullets.bullet import Bullet
 
 class EnemyPhantom(Sprite):
     Y_POS = 30
@@ -37,8 +38,9 @@ class EnemyPhantom(Sprite):
         if self.index >= self.move_x_for:
             self.index = 0
             
-    def update(self, ships):
+    def update(self, ships, game):
         self.rect.y += self.speed_y
+        self.shoot(game.bullet_manager)
         
         if self.movement_x == 'left':
             self.rect.x -= self.speed_x
@@ -48,7 +50,15 @@ class EnemyPhantom(Sprite):
             self.change_movement_x()
         if self.rect.y >= SCREEN_HEIGHT:
             ships.remove(self)
+    
+    def shoot(self, bullet_manager):
+        current_time = pygame.time.get_ticks()
         
+        if self.shooting_time <= current_time:
+            bullet = Bullet(self)
+            bullet_manager.add_bullet(bullet)
+            self.shooting_time += random.randint(20, 50)
+    
     
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))

@@ -1,7 +1,7 @@
 from game.components.enemies.enemy import Enemy
+from game.components.enemies.phantom_ship import EnemyPhantom
+from game.components.enemies.tick import EnemyTick
 import random
-# from game.components.enemies.phantom_ship import EnemyPhantom
-# from game.components.enemies.tick import EnemyTick
 
 class EnemyManager:
     def __init__(self):
@@ -13,13 +13,23 @@ class EnemyManager:
             enemy.update(self.enemies, game)
         
     def add_enemy(self):
-        if len(self.enemies) < 2:
+        enemy_type = random.randint(1,2)
+        if enemy_type == 1:
+            tick = EnemyTick()
+            phantom = EnemyPhantom()
             enemy = Enemy()
-            # phantom = EnemyPhantom()
-            # tick = EnemyTick()
+        else: 
+            x_speed = 5
+            y_speed = 2
+            move_x_for = [50, 120]
+            enemy = Enemy()
+            tick = EnemyTick()
+            phantom = EnemyPhantom()
+            
+        if len(self.enemies) < 2:
             self.enemies.append(enemy)
-            # self.enemies.append(phantom) 
-            # self.enemies.append(tick)           
+            self.enemies.append(phantom) 
+            self.enemies.append(tick)           
             
     def draw(self, screen):
         for enemy in self.enemies:
