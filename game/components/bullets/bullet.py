@@ -7,7 +7,7 @@ class Bullet(Sprite):
     X_POS = 80
     Y_POS = 310
     SPEED = 20
-    BULLET_SIZE = pygame.transform.scale(BULLET, (10,20))
+    BULLET_SIZE = pygame.transform.scale(BULLET, (20,40))
     BULLET_SIZE_ENEMY = pygame.transform.scale(BULLET_ENEMY, (9,32))
     BULLETS =  {'player':BULLET_SIZE, 'enemy':BULLET_SIZE_ENEMY}
     
@@ -21,9 +21,15 @@ class Bullet(Sprite):
         pass
     
     def update(self, bullets):
-        self.rect.y += self.SPEED
-        if self.rect.y >= SCREEN_HEIGHT:
-            bullets.remove(self)
+        if self.owner == "enemy":   
+            self.rect.y += self.SPEED
+            if  self.rect.y >= SCREEN_HEIGHT:
+                bullets.remove(self)
+        else:
+            self.rect.y -= self.SPEED
+            if  self.rect.y <= 0:
+                bullets.remove(self) 
+                
 
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
