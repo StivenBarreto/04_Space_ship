@@ -26,6 +26,7 @@ AMMO_TYPE = 'ammo'
 
 SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 GAMEOVER = pygame.image.load(os.path.join(IMG_DIR, "Other/GameOver.png"))
+SPACESHIP_AMMO = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/space_ammo.png")) 
 SPACESHIP_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_shield.png"))
 BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_player.png"))
 

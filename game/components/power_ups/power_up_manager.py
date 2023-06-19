@@ -3,7 +3,7 @@ import random
 
 from game.components.power_ups.shield import Shield
 from game.components.power_ups.ammo import Ammo
-from game.utils.constants import SPACESHIP_SHIELD, SHIELD_TYPE, AMMO, AMMO_TYPE, SPACESHIP, DEFAULT_TYPE, SCREEN_HEIGHT, SCREEN_WIDTH 
+from game.utils.constants import SPACESHIP_SHIELD, SHIELD_TYPE, SPACESHIP_AMMO, AMMO_TYPE, AMMO, SPACESHIP, DEFAULT_TYPE, SCREEN_HEIGHT, SCREEN_WIDTH 
 
 class PowerUpManager:
     def __init__(self):
@@ -39,7 +39,7 @@ class PowerUpManager:
                 game.player.power_time_up = power_up.start_time + (self.duration * 1000)
                 game.player.has_power_up = True
                 # print(game.player.power_time_up)
-                game.player.set_image((65, 75), SPACESHIP_SHIELD)
+                game.player.set_image((65, 75), SPACESHIP_AMMO)
                 self.power_ups.remove(power_up)
 
                 
