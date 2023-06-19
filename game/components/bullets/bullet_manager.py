@@ -15,7 +15,7 @@ class BulletManager:
                     game.playing = False
                     pygame.time.delay(1000)
                     game.death_count.update()
-                    
+
                 break
          
         for bullet in self.bullets:
@@ -34,10 +34,11 @@ class BulletManager:
         for bullet in self.bullets:
             bullet.draw(screen)
             
-    def add_bullet(self, bullet):
-        if bullet.owner == 'enemy' and len(self.enemy_bullets) < 2:
-            self.enemy_bullets.append(bullet)
-        elif bullet.owner == "player" and len(self.bullets) < 5:
+    def add_bullet(self, bullet, game):
+        if bullet.owner == "enemy":
+                self.enemy_bullets.append(bullet)
+
+        elif bullet.owner == "player":
             self.bullets.append(bullet)
             
     def reset(self):

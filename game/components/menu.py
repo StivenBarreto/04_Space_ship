@@ -23,10 +23,10 @@ class Menu:
         self.handle_event_on_menu(game)
     
     def draw(self, screen, message, x = HALF_SCREEN_WIDTH, y=HALF_SCREEN_HEIGHT, color = (0, 0, 0)):
-        text = self.font.render(message, True, color)
+        text = self.font.render(message, True, (255, 255, 255))
         text_rect = text.get_rect()
         text_rect.center = (x,y)
         screen.blit(text, text_rect)
         
     def reset_screen_collor(self, screen):
-        screen.fill((255, 255, 255))
+        screen.fill((0, 0, 0))

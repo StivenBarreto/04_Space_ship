@@ -1,6 +1,6 @@
 import pygame 
 
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, FONT_STYLE
+from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, FONT_STYLE, GAMEOVER
 
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_manager import EnemyManager
@@ -10,6 +10,7 @@ from game.components.counter import Counter
 from game.components.power_ups.power_up_manager import PowerUpManager
 
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -17,6 +18,7 @@ class Game:
         pygame.display.set_icon(ICON)
         self.screen = pygame.display.set_mode( (SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
+
         
         self.playing = False
         self.game_speed = 10
@@ -27,11 +29,7 @@ class Game:
         self.enemy_manager = EnemyManager()
         self.bullet_manager = BulletManager()
         self.running = False
-        # self.score = 0
-        # self.death_count = 0
-        # self.keep = 0
-        # self.highest_score = 0
-        # self.menu = Menu('Press any key to start...', self.screen)
+        
         self.score = Counter()
         self.death_count = Counter()
         self.highest_score = Counter()
@@ -92,9 +90,9 @@ class Game:
         
     def draw_power_up_time(self):
         if self.player.has_power_up:
-            time_to_show = round((self.player.power_time_up - pygame.time.get_ticks())/1000,2)
+            time_to_show = round((self.player.power_time_up - pygame.time.get_ticks()) /1000,2)
             if time_to_show >= 0:
-                self.menu.draw(self.screen, f'{self.player.power_up_type.capitalize()} is enabled for {time_to_show} in seconds', 500,50, {255, 255, 255})
+                self.menu.draw(self.screen, f'{self.player.power_up_type.capitalize()} is enabled for {time_to_show} in seconds', 500,20, {255, 255, 255})
             else:
                 self.player.has_power_up = False
                 self.player.power_time_up = DEFAULT_TYPE
@@ -125,6 +123,8 @@ class Game:
             self.menu.draw(self.screen, f'Your Score : {self.score.count}', half_screen_width, 350,)
             self.menu.draw(self.screen, f'Your Highest Score : {self.highest_score.count}', half_screen_width, 400,)
             self.menu.draw(self.screen, f'Total Death : {self.death_count.count}', half_screen_width, 450,)
+            game_over = pygame.transform.scale(GAMEOVER, (300, 120))
+            self.screen.blit(game_over, (half_screen_width -150, half_screen_height -250))
             
             
             
